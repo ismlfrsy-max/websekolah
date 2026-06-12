@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Siswa{% endblock %}
+
+{% block content %}
+<form method="post" class="space-y">
+    {% csrf_token %}
+
+    <h1 class="text-3xl font-bold text-slate-900">Edit Siswa</h1> 
+    <p class="text-gray-600">Perbarui data siswa: <strong>{{ siswa.nama }}</strong></p>
+    <hr class="border-t border-slate-200 my-2">
+    
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Nama</label>
+        <input type="text" name="nama" value="{{ siswa.nama }}" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Umur</label>
+        <input type="number" name="umur" value="{{ siswa.umur }}" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Tgl Lahir</label>
+        <input type="date" name="tgl_lahir" value="{{ siswa.tgl_lahir }}" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Status Hadir</label>
+        <div class="flex gap-4 items-center mt-2">
+            <label class="inline-flex items-center text-sm text-slate-700 cursor-pointer">
+                <input type="radio" name="status_hadir" value="Hadir" 
+                       {% if siswa.status_hadir %} checked {% endif %}
+                       class="mr-2 focus:ring-blue-500 text-blue-600 border-slate-300">
+                Hadir
+            </label>
+            
+            <label class="inline-flex items-center text-sm text-slate-700 cursor-pointer">
+                <input type="radio" name="status_hadir" value="Tidak Hadir" 
+                       {% if not siswa.status_hadir %} checked {% endif %}
+                       class="mr-2 focus:ring-blue-500 text-blue-600 border-slate-300">
+                Tidak Hadir
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Nilai Akhir</label>
+        <input type="number" name="nilai_akhir" min="0" max="100" value="{{ siswa.nilai_akhir }}" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-5">
+    </div>
+
+    <div class="flex gap-3 pt-2">
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+            Simpan Perubahan
+        </button>
+
+        <a href="{% url 'siswa_list' %}"
+           class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200">
+            Batal
+        </a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+   Form Siswa
+{% endblock %}
+
+{% block content %}
+<form method="post" class="space-y">
+    <!-- token keamanan anti-CSRF -->
+    {% csrf_token %}
+
+    <!-- form inputannya disini ntar -->
+    <h1 class="text-3xl font-bold text-slate-900">
+        Form Siswa
+    </h1> 
+    <p class="text-gray-600">Halaman tambah siswa-siswa kelas X - HSI Boarding School Purworejo</p>
+    <hr class="border-t border-slate-200 my-2">
+    
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Nama</label>
+        <input type="text" name="nama" value="" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Umur</label>
+        <input type="number" name="umur" value="" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Tgl Lahir</label>
+        <input type="date" name="tgl_lahir" value="" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Status Hadir</label>
+        
+            <div class="flex gap-4 items-center mt-2">
+                <label class="inline-flex items-center text-sm text-slate-700 cursor-pointer">
+                    <input type="radio" id="hadir" name="status_hadir" value="Hadir" class="mr-2 focus:ring-blue-500 text-blue-600 border-slate-300">
+                    Hadir
+                </label>
+                
+                <label class="inline-flex items-center text-sm text-slate-700 cursor-pointer">
+                    <input type="radio" id="tidak_hadir" name="status_hadir" value="Tidak Hadir" class="mr-2 focus:ring-blue-500 text-blue-600 border-slate-300">
+                    Tidak Hadir
+                </label>
+            </div>
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1 mt-3">Nilai Akhir</label>
+        <input type="number" name="nilai_akhir" min="0" max="100" value="" required
+               class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-5">
+    </div>
+   
+
+
+
+    <div class="flex gap-3 pt-2">
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+            Simpan
+        </button>
+
+        <a href="{% url 'siswa_list' %}"
+           class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200">
+            Batal
+        </a>
+    </div>
+</form>
+{% endblock %}
